@@ -22,17 +22,12 @@
         const btnVibrate = document.querySelector('.btn-vibrate');
 
         btnVibrate.addEventListener('click', () => {
-            if (window.navigator.vibrate) {
-                vibrateSOS();
-            } else {
-                alert('Your device does not support API Vibration interface :(')
-            }
+            vibrateSOS();
         });
 
         const vibrateSOS = () => {
-            window.navigator.vibrate([200, 100, 200, 100, 200]);
             if (window.navigator.vibrate) {
-                window.navigator.vibrate(100);
+                window.navigator.vibrate([200, 100, 200, 100, 200]);;
                 if (window.navigator.permissions) {
                     window.navigator.permissions.query({name: 'vibrate'}).then(function(result) {
                     if (result.state == 'granted') {
