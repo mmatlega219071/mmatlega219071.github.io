@@ -15,7 +15,7 @@
 <body>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">PWA App</a>
+          <a class="navbar-brand" href="./index.html">PWA App</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -30,28 +30,36 @@
             </ul>
           </div>
         </div>
-    </nav>  
-    <div class="container-fluid text-center p-2 mt-2">
-        <div class="row">
-            <h2 class="text-secondary mb-3">Authors:</h2>
-        </div>
-        <div class="row align-middle text-white">
-            <div class="col-sm-4 p-2 bg-primary">
-                <h3>Your name here...</h3>
-                <p>ALBUM: 123456</p>
-                <p>GROUP: ZIISN1-3611IO</p>
-            </div>
-            <div class="col-sm-4 p-2 bg-success">
-                <h3>Your name here...</h3>
-                <p>ALBUM: 123456</p>
-                <p>GROUP: ZIISN1-3611IO</p>
-            </div>
-            <div class="col-sm-4 p-2 bg-danger">
-                <h3>Your name here...</h3>
-                <p>ALBUM: 123456</p>
-                <p>GROUP: ZIISN1-3611IO</p>
-            </div>
-        </div>
+    </nav>
+    <div class="container text-center p-2 mt-2">
+        <div id = "map"></div>
     </div>
+
+    <script>
+        // Creating map options
+        var mapOptions = {
+        center: [17.385044, 78.486671],
+        zoom: 10
+        }
+        
+        // Creating a map object
+        var map = new L.map('map', mapOptions);
+        
+        // Creating a Layer object
+        var layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+        
+        // Adding layer to the map
+        map.addLayer(layer);
+
+        navigator.geolocation.getCurrentPosition(function(position) {
+        var latlng = [position.coords.latitude, position.coords.longitude];
+
+        // utwórz marker z pozycją użytkownika
+        var marker = L.marker(latlng).addTo(map);
+
+        // centruj mapę na pozycji użytkownika
+        map.setView(latlng, 13);
+        });
+    </script>
 </body>
 </html>
