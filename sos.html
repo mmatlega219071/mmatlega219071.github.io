@@ -31,6 +31,20 @@
 
         const vibrateSOS = () => {
             window.navigator.vibrate([200, 100, 200, 100, 200]);
+            if (window.navigator.vibrate) {
+                window.navigator.vibrate(100);
+                if (window.navigator.permissions) {
+                    window.navigator.permissions.query({name: 'vibrate'}).then(function(result) {
+                    if (result.state == 'granted') {
+                        console.log('Vibrate');
+                    } else if (result.state == 'prompt') {
+                        console.log('Vibrate request');
+                    } else {
+                        console.log('Not vibrate');
+                    }
+                    });
+                }
+            }
         }
     </script>
 </body>
