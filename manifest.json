@@ -4,7 +4,7 @@
     "description": "My first PWA App",
     "icons": [
       {
-        "src": "./test_icon.png",
+        "src": "icons/test_icon.png",
         "sizes": "512x512",
         "type": "image/png"
       }
